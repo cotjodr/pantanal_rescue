@@ -21,7 +21,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Pantanal Rescue"
+run/main_scene="res://Assets/Scenes/main.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
 
 [physics]
 
