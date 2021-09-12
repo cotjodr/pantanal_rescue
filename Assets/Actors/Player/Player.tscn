@@ -1,18 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Actors/Player/Script/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Sprite/Player/back-l/0001.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprite/Player/back-l/0002.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprite/Player/back-l/0004.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprite/Player/back-l/0003.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SpriteFrames/gancho_anim.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://Assets/SpriteFrames/helicpter_anim.tres" type="SpriteFrames" id=3]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 15.0
-} ]
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.63177, 15.4174 )
 
 [node name="Actor" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -21,6 +14,19 @@ script = ExtResource( 1 )
 current = true
 smoothing_enabled = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 13.4694, 368.168 )
+scale = Vector2( -36.1237, 10.6499 )
+shape = SubResource( 1 )
+
+[node name="Gancho" type="AnimatedSprite" parent="."]
+position = Vector2( 22.4492, 69.5927 )
+frames = ExtResource( 2 )
+animation = "Gancho_idle"
+playing = true
+
+[node name="Helicopter" type="AnimatedSprite" parent="."]
+frames = ExtResource( 3 )
+animation = "Left"
+frame = 1
 playing = true
