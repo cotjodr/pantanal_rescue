@@ -7,7 +7,7 @@
 [resource]
 0/name = "tile__forest.png 0"
 0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, -176 )
+0/tex_offset = Vector2( -192, -240 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 512, 512 )
 0/tile_mode = 0
@@ -21,7 +21,7 @@
 0/z_index = 0
 2/name = "tile_water.png 2"
 2/texture = ExtResource( 2 )
-2/tex_offset = Vector2( 0, -176 )
+2/tex_offset = Vector2( -192, -240 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 512, 512 )
 2/tile_mode = 0
@@ -35,7 +35,7 @@
 2/z_index = 0
 3/name = "tile_grass.png 3"
 3/texture = ExtResource( 3 )
-3/tex_offset = Vector2( 0, -176 )
+3/tex_offset = Vector2( -192, -240 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 512, 512 )
 3/tile_mode = 0

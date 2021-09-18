@@ -21,4 +21,6 @@ script = ExtResource( 2 )
 [node name="Actor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 403.121, 105.736 )
 scale = Vector2( 0.44, 0.44 )
+maxSpeed = 750
+acceleration = 1000
 turn_speed = 300

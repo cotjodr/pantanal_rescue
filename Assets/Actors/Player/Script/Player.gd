@@ -6,7 +6,7 @@ var motion = Vector2();
 var angle = 0.0;
 export var turn_speed = 400;
 var direction = 0;
-export var acceleration = 2000
+
 
 func update_angle(value):
 	angle += value
@@ -53,8 +53,11 @@ func get_vertical_input_info():
 func apply_friction(amount):
 	if motion.length() > amount:
 		motion -= motion.normalized() * amount
+	else:
+		motion = Vector2.ZERO
 	pass
 func apply_movement(amount):
 	var a = stepify(deg2rad(angle), PI/12)
-	motion = Vector2(cos(a), sin(a)).normalized() * amount;
+	motion += Vector2(cos(a), sin(a)).normalized() * amount;
+	motion = motion.clamped(maxSpeed)
 	pass

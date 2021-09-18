@@ -7,7 +7,8 @@ class_name Actor
 export var health = 100;
 export var bLifeStats = true;
 export var moveDir = Vector2.ZERO;
-export var speed = 500;
+export var maxSpeed = 500
+export var acceleration = 2000
 
 
 # Métodos da classe
