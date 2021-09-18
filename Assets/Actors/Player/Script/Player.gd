@@ -2,11 +2,11 @@ extends Actor
 
 onready var Helicopter = $Helicopter
 onready var Gancho = $Gancho
-
 var motion = Vector2();
 var angle = 0.0;
 export var turn_speed = 400;
 var direction = 0;
+export var acceleration = 2000
 
 func update_angle(value):
 	angle += value
@@ -19,16 +19,21 @@ func update_angle(value):
 	pass
 
 func _physics_process(delta):
-	var horizontal = int(Input.is_action_pressed("ui_left")) - int(Input.is_action_pressed("ui_right"))
+	var horizontal = get_horizontal_input_info()
+	var vertical = get_vertical_input_info()
+	
 	update_angle(horizontal * turn_speed * delta)
-	var vertical = int(Input.is_action_pressed("ui_up")) - int(Input.is_action_pressed("ui_down"))
+	
 	if Input.is_action_pressed("ui_select"): 
 		Gancho.animation = "Gancho_on"
 	else:
 		Gancho.animation = "Gancho_idle"
-	var a = stepify(deg2rad(angle), PI/12)
-	motion = Vector2(cos(a), sin(a))
-	move_and_slide(motion.normalized() * speed * vertical)
+		
+	if vertical == 0:
+		apply_friction(acceleration * delta)
+	else:
+		apply_movement(acceleration * delta * vertical)
+	motion = move_and_slide(motion)
 
 func _process(delta):
 	animation_set(delta)
@@ -37,3 +42,19 @@ func _process(delta):
 
 func animation_set(delta):
 	Helicopter.set_frame(direction)
+	
+	
+func get_horizontal_input_info():
+	return int(Input.is_action_pressed("ui_left")) - int(Input.is_action_pressed("ui_right"))
+
+func get_vertical_input_info():
+	return int(Input.is_action_pressed("ui_up")) - int(Input.is_action_pressed("ui_down"))
+
+func apply_friction(amount):
+	if motion.length() > amount:
+		motion -= motion.normalized() * amount
+	pass
+func apply_movement(amount):
+	var a = stepify(deg2rad(angle), PI/12)
+	motion = Vector2(cos(a), sin(a)).normalized() * amount;
+	pass
