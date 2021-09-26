@@ -5,7 +5,8 @@ extends TileMap
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-var offset = Vector2(-192,-240.0)
+#var offset = Vector2(-192,-240.0)
+var offset = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -4,8 +4,14 @@
 [ext_resource path="res://Assets/Actors/Capivara/Script/Capivara.gd" type="Script" id=2]
 
 [node name="Capivara" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource( 2 )
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -3.78831, -10.1022 )
+polygon = PoolVector2Array( 33.1177, 26.7397, 7.5817, 39.3674, -17.9543, 26.5994, 7.5817, 13.8314 )
+
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.4, 0.4 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 1 )

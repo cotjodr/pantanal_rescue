@@ -1,26 +1,39 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Tileset/tileset_terreno.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/tile_map_offset_texture.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Actors/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/main.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Actors/Capivara/Capivara.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
 position = Vector2( 251.716, 245.722 )
 script = ExtResource( 4 )
 
 [node name="Ground" type="TileMap" parent="."]
-position = Vector2( 206.627, 236.865 )
 mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 64 )
 cell_quadrant_size = 32
+centered_textures = true
+collision_layer = 4
 format = 1
 script = ExtResource( 2 )
+
+[node name="Trees" type="TileMap" parent="."]
+mode = 1
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 64 )
+cell_quadrant_size = 32
+centered_textures = true
+format = 1
+
+[node name="Capivara" parent="." instance=ExtResource( 5 )]
+position = Vector2( 372.427, 139.521 )
 
 [node name="Actor" parent="." instance=ExtResource( 3 )]
 position = Vector2( 403.121, 105.736 )
 scale = Vector2( 0.44, 0.44 )
 maxSpeed = 750
-acceleration = 1000
+acceleration = 500
 turn_speed = 300
