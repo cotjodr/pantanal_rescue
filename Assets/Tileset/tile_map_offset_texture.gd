@@ -12,6 +12,8 @@ var offset = Vector2(0,0)
 func _ready():
 	for title in tile_set.get_tiles_ids():
 		tile_set.tile_set_texture_offset(title, offset)
+	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

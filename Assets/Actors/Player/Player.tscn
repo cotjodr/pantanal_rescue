@@ -75,7 +75,7 @@
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0070.png" type="Texture" id=73]
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0068.png" type="Texture" id=74]
 
-[sub_resource type="CircleShape2D" id=12]
+[sub_resource type="CircleShape2D" id=1]
 radius = 61.7259
 
 [sub_resource type="Animation" id=2]
@@ -107,8 +107,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "hook_idle"
+[sub_resource type="Animation" id=3]
 step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Hook:texture")
@@ -135,8 +134,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "hook_up"
+[sub_resource type="Animation" id=4]
 length = 1.92308
 step = 0.0769231
 tracks/0/type = "value"
@@ -164,38 +162,39 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "hook_down"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "hook_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=8]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "hook_up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=10]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/hook_down/node = SubResource( 6 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/hook_down/node = SubResource( 5 )
 states/hook_down/position = Vector2( 547, 77 )
-states/hook_idle/node = SubResource( 7 )
+states/hook_idle/node = SubResource( 6 )
 states/hook_idle/position = Vector2( 275, 77 )
-states/hook_up/node = SubResource( 8 )
+states/hook_up/node = SubResource( 7 )
 states/hook_up/position = Vector2( 403, 213 )
-transitions = [ "hook_idle", "hook_down", SubResource( 9 ), "hook_down", "hook_up", SubResource( 10 ), "hook_up", "hook_idle", SubResource( 11 ) ]
+transitions = [ "hook_idle", "hook_down", SubResource( 8 ), "hook_down", "hook_up", SubResource( 9 ), "hook_up", "hook_idle", SubResource( 10 ) ]
 start_node = "hook_idle"
+graph_offset = Vector2( -114, -59 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
-[node name="Actor" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 collision_mask = 4
 script = ExtResource( 1 )
 
@@ -219,7 +218,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hook/Area2D"]
 position = Vector2( -76.0858, 299.004 )
-shape = SubResource( 12 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="Helicopter" type="AnimatedSprite" parent="."]
@@ -234,7 +233,7 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
-frame = 2
+frame = 3
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -242,14 +241,14 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/hook_down = SubResource( 2 )
-anims/hook_idle = SubResource( 1 )
-anims/hook_up = SubResource( 3 )
+anims/hook_idle = SubResource( 3 )
+anims/hook_up = SubResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 12 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -16.3601, -8.39493 )

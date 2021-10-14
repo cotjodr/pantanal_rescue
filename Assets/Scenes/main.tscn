@@ -1,13 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Tileset/tileset_terreno.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/tile_map_offset_texture.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Actors/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/main.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Actors/Capivara/Capivara.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/PostProcess/env_process.tres" type="Environment" id=5]
+[ext_resource path="res://Assets/Sprite/Tileset/leaf_particle.png" type="Texture" id=6]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 540, 1 )
+flag_align_y = true
+flag_disable_z = true
+gravity = Vector3( 98, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 1.0
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( 251.716, 245.722 )
 script = ExtResource( 4 )
 
 [node name="Ground" type="TileMap" parent="."]
@@ -18,6 +29,7 @@ cell_quadrant_size = 32
 centered_textures = true
 collision_layer = 4
 format = 1
+tile_data = PoolIntArray( -196596, 0, 0, -196595, 0, 0, -196594, 0, 0, -196593, 0, 0, -196592, 0, 0, -131061, 0, 0, -131060, 0, 0, -131059, 0, 0, -131058, 0, 0, -131057, 0, 0, -131056, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 2, 0, -65522, 2, 0, -65520, 0, 0, 11, 0, 0, 12, 0, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 0, 0, 65547, 0, 0, 65548, 0, 0, 65550, 2, 0, 65551, 2, 0, 65552, 0, 0, 131083, 0, 0, 131084, 0, 0, 131085, 0, 0, 131086, 0, 0, 131087, 0, 0, 131088, 0, 0, 458770, 3, 0 )
 script = ExtResource( 2 )
 
 [node name="Trees" type="TileMap" parent="."]
@@ -25,15 +37,31 @@ mode = 1
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 64 )
 cell_quadrant_size = 32
+cell_y_sort = true
 centered_textures = true
 format = 1
+tile_data = PoolIntArray( -196595, 6, 65539, -196594, 6, 1, -196593, 6, 65537, -196592, 6, 0, -131060, 6, 65537, -131059, 6, 65536, -131058, 6, 2, -131057, 6, 65537, -131056, 6, 65538, -65525, 6, 2, -65524, 6, 2, -65520, 6, 65539, 11, 6, 65539, 16, 6, 65539, 131086, 6, 0, 131088, 6, 0 )
 
-[node name="Capivara" parent="." instance=ExtResource( 5 )]
-position = Vector2( 372.427, 139.521 )
-
-[node name="Actor" parent="." instance=ExtResource( 3 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 403.121, 105.736 )
 scale = Vector2( 0.44, 0.44 )
 maxSpeed = 750
 acceleration = 500
 turn_speed = 300
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 5 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.976471, 0.584314, 0.298039, 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="CanvasLayer"]
+position = Vector2( 903.993, 433.629 )
+amount = 200
+lifetime = 10.0
+speed_scale = 1.2
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 6 )
