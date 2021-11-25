@@ -6,6 +6,7 @@ onready var tilemap = $Ground
 onready var trees = $Trees
 export var inSeed = ''
 export var maxNumberOfCapivaras = 20
+
 var Capivara = load("res://Assets/Actors/Capivara/Capivara.tscn")
 var Leaves = load("res://Assets/Particles/Leaves.tscn")
 
@@ -16,6 +17,7 @@ var capivarasPositions = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	randomize();
 	if inSeed:
 		osn.seed = hash(inSeed)
@@ -76,7 +78,8 @@ func generate_capivaras():
 					capivarasPositions[pos.x+width][pos.y+height] = 1
 					var localPosition = tilemap.map_to_world(pos)
 					var capivara = Capivara.instance()
-					add_child_below_node($Trees, capivara)
+					$Trees.add_child(capivara)
+					#add_child_below_node($Trees, capivara)
 					capivara.position = localPosition
 					placed = true
 

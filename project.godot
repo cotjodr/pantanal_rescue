@@ -24,6 +24,10 @@ config/name="Pantanal Rescue"
 run/main_scene="res://Assets/Scenes/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+FuelSystem="*res://Assets/Singleton/fuel_system.gd"
+
 [display]
 
 window/size/width=1920

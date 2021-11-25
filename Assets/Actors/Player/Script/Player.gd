@@ -3,7 +3,7 @@ extends Actor
 onready var Helicopter = $Helicopter
 onready var animationTree = get_node("AnimationTree")
 onready var stateMachine = animationTree.get("parameters/playback")
-
+onready var fuel_system = get_node("/root/FuelSystem");
 var motion = Vector2();
 var angle = 0.0;
 export var turn_speed = 400;
