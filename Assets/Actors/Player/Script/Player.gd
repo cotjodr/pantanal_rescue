@@ -1,13 +1,28 @@
 extends Actor
+signal onChangeTime(time);
+signal onCheckSpeed(velocity);
+signal onChackPos(_PosHoriz,_PosVerti);
+signal onCountCapivara(_CapivaraSaved);
+signal onCheckHookState(_HookState);
+signal onPrintFuel(_Fuel);
+signal setMaxFuel(_MaxFuel);
+
+export var turn_speed = 400;
+export var MaxTime = 300;
+export var MaxFuel = 700;
+
 onready var Helicopter = $Helicopter
 onready var animationTree = get_node("AnimationTree")
 onready var stateMachine = animationTree.get("parameters/playback")
 onready var fuel_system = get_node("/root/FuelSystem");
+onready var MapGrid = get_parent().get_node("Ground");
+
 var motion = Vector2();
 var angle = 0.0;
-export var turn_speed = 400;
 var direction = 0;
 var numberOfCapivaras = 0;
+var AtualFuel = 0;
+
 
 func update_angle(value):
 	angle += value
@@ -34,11 +49,21 @@ func _physics_process(delta):
 		apply_friction(acceleration * delta)
 	else:
 		apply_movement(acceleration * delta * vertical)
-		
+	
+	### HUD Functions ###
+	TimeCount(delta);
+	FuelCount(delta);
+	SpeedCheck(motion);
+	PositionCheck(position);
+	CapivaraCount();
+	HookCheck();
+	
 	motion = move_and_slide(motion)
 
 func _process(_delta):
 	animation_set()
+	emit_signal("setMaxFuel", MaxFuel);
+	AtualFuel = MaxFuel;
 	pass
 
 
@@ -70,3 +95,40 @@ func _on_Area2D_body_entered(body):
 	# Verificar se é capivara se for realiza a captura
 	print(body.name)
 	pass
+
+
+#### HUD Functions ####
+func TimeCount(delta):
+	MaxTime -= delta;
+	if MaxTime > 0:
+		emit_signal("onChangeTime", MaxTime);
+	else:
+		#### GAME OVER CONDITION ####
+		pass;
+
+func FuelCount(delta):
+	var consumo = fuel_system.get_instant_consumption(motion.length(), maxSpeed) * delta;
+	print(consumo);
+	AtualFuel -= consumo;
+	
+	if AtualFuel >= 0:
+		emit_signal("onPrintFuel", AtualFuel);
+	else:
+		#### GAME OVER CONDITION ####
+		pass;
+
+func SpeedCheck(motion):
+	emit_signal("onCheckSpeed", (motion.length()));
+
+func PositionCheck(pos):
+	var localPos = MapGrid.to_local(pos);
+	emit_signal("onChackPos", MapGrid.world_to_map(localPos).x, MapGrid.world_to_map(localPos).y);
+
+func CapivaraCount():
+	emit_signal("onCountCapivara", numberOfCapivaras);
+
+func HookCheck():
+	if stateMachine.get_current_node() == "hook_up" || stateMachine.get_current_node() == "hook_down":
+		emit_signal("onCheckHookState", true);
+	else:
+		emit_signal("onCheckHookState", false);

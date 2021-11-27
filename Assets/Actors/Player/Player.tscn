@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://Assets/Actors/Player/Script/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteFrames/gancho_anim.tres" type="SpriteFrames" id=2]
@@ -74,6 +74,19 @@
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0069.png" type="Texture" id=72]
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0070.png" type="Texture" id=73]
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0068.png" type="Texture" id=74]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Speed.gd" type="Script" id=75]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Time.gd" type="Script" id=76]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Hook.gd" type="Script" id=77]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_PosY.gd" type="Script" id=78]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_PosX.gd" type="Script" id=79]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Grid_Information.png" type="Texture" id=80]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-23.tres" type="DynamicFont" id=81]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-40.tres" type="DynamicFont" id=82]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-30.tres" type="DynamicFont" id=83]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-23-B.tres" type="DynamicFont" id=84]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Front_Bar.png" type="Texture" id=85]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Back_Bar.png" type="Texture" id=86]
+[ext_resource path="res://Assets/Actors/Player/Script/HUD_Fueal_Bar.gd" type="Script" id=87]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 61.7259
@@ -200,7 +213,6 @@ script = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-smoothing_enabled = true
 
 [node name="Gancho" type="AnimatedSprite" parent="."]
 visible = false
@@ -233,7 +245,7 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
-frame = 3
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -255,4 +267,117 @@ position = Vector2( -16.3601, -8.39493 )
 scale = Vector2( 0.965278, 1.01592 )
 polygon = PoolVector2Array( -316.877, 452.436, -107.409, 433.296, 172.042, 268.298, 197.441, 211.151, 157.756, 203.214, 108.546, 217.501, -56.5433, 290.522, -172.424, 338.144, -289.891, 400.052 )
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchor_right = 1.0
+margin_left = 600.0
+margin_top = 200.0
+margin_bottom = 1080.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer"]
+margin_left = 176.0
+margin_top = 188.0
+margin_right = 1143.0
+margin_bottom = 691.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 5
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HUD/MarginContainer/HBoxContainer"]
+margin_right = 924.0
+margin_bottom = 503.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 80 )
+
+[node name="Label_Speed" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 11.8
+margin_top = 8.8
+margin_right = 128.8
+margin_bottom = 29.8
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 81 )
+text = "SPEED 0"
+script = ExtResource( 75 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Time" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 351.8
+margin_top = -73.3
+margin_right = 582.8
+margin_bottom = -37.3
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 82 )
+text = "TIME 0:00"
+align = 1
+script = ExtResource( 76 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_PosX" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 62.0
+margin_top = 382.0
+margin_right = 179.0
+margin_bottom = 403.0
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
+text = "POSX 0"
+script = ExtResource( 79 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_PosY" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 62.0
+margin_top = 408.0
+margin_right = 179.0
+margin_bottom = 429.0
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
+text = "POSY 0"
+script = ExtResource( 78 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Hook" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+visible = false
+margin_left = 582.0
+margin_top = 440.0
+margin_right = 699.0
+margin_bottom = 467.0
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 83 )
+text = "ON"
+script = ExtResource( 77 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fuel_Bar" type="TextureProgress" parent="HUD/MarginContainer/HBoxContainer"]
+margin_left = 929.0
+margin_right = 967.0
+margin_bottom = 503.0
+value = 70.0
+texture_under = ExtResource( 86 )
+texture_progress = ExtResource( 85 )
+fill_mode = 3
+script = ExtResource( 87 )
+
+[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
+[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
+[connection signal="onChangeTime" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Time" method="_on_Player_onChangeTime"]
+[connection signal="onCheckHookState" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Hook" method="_on_Player_onCheckHookState"]
+[connection signal="onCheckSpeed" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Speed" method="_on_Player_onCheckSpeed"]
+[connection signal="onPrintFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_onPrintFuel"]
+[connection signal="setMaxFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_setMaxFuel"]
 [connection signal="body_entered" from="Hook/Area2D" to="." method="_on_Area2D_body_entered"]
