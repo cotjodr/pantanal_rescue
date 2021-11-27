@@ -1,5 +1,4 @@
 extends Actor
-
 onready var Helicopter = $Helicopter
 onready var animationTree = get_node("AnimationTree")
 onready var stateMachine = animationTree.get("parameters/playback")
@@ -9,7 +8,6 @@ var angle = 0.0;
 export var turn_speed = 400;
 var direction = 0;
 var numberOfCapivaras = 0;
-
 
 func update_angle(value):
 	angle += value
@@ -36,6 +34,7 @@ func _physics_process(delta):
 		apply_friction(acceleration * delta)
 	else:
 		apply_movement(acceleration * delta * vertical)
+		
 	motion = move_and_slide(motion)
 
 func _process(_delta):

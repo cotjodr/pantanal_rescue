@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 FuelSystem="*res://Assets/Singleton/fuel_system.gd"
+FireSystem="*res://Assets/Singleton/fire_system.gd"
 
 [display]
 

@@ -4,6 +4,7 @@ export var width = 32;
 export var height = 32;
 onready var tilemap = $Ground
 onready var trees = $Trees
+onready var fire_system = get_node("/root/FireSystem");
 export var inSeed = ''
 export var maxNumberOfCapivaras = 20
 
@@ -32,6 +33,7 @@ func _ready():
 	generate_map()
 	generate_leaves()
 	generate_capivaras()
+	fire_system.init_fire_system(width, height, trees, tilemap)
 	pass # Replace with function body.
 
 func generate_map():
@@ -77,6 +79,7 @@ func generate_capivaras():
 				if capivarasPositions[pos.x+width][pos.y+height] == 0 and tilemap.get_cell(pos.x, pos.y) != 2:
 					capivarasPositions[pos.x+width][pos.y+height] = 1
 					var localPosition = tilemap.map_to_world(pos)
+					
 					var capivara = Capivara.instance()
 					$Trees.add_child(capivara)
 					#add_child_below_node($Trees, capivara)
