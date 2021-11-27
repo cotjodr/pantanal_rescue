@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/helicoptero-corda-descendo.mp3-211a368699d7458a0ecdabe99ef23121.mp3str"
+
+[deps]
+
+source_file="res://helioporto/fx/helicoptero-corda-descendo.mp3"
+dest_files=[ "res://.import/helicoptero-corda-descendo.mp3-211a368699d7458a0ecdabe99ef23121.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

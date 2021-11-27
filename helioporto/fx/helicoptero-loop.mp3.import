@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/helicoptero-loop.mp3-79b6de714fa114df3ad4e4695b4b28ae.mp3str"
+
+[deps]
+
+source_file="res://helioporto/fx/helicoptero-loop.mp3"
+dest_files=[ "res://.import/helicoptero-loop.mp3-79b6de714fa114df3ad4e4695b4b28ae.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

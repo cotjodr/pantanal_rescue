@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=2]
+[gd_scene load_steps=133 format=2]
 
 [ext_resource path="res://Assets/Actors/Player/Script/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteFrames/gancho_anim.tres" type="SpriteFrames" id=2]
@@ -87,9 +87,80 @@
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Front_Bar.png" type="Texture" id=85]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Back_Bar.png" type="Texture" id=86]
 [ext_resource path="res://Assets/Actors/Player/Script/HUD_Fueal_Bar.gd" type="Script" id=87]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0003.png" type="Texture" id=88]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0004.png" type="Texture" id=89]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0005.png" type="Texture" id=90]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0006.png" type="Texture" id=91]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0001.png" type="Texture" id=92]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0002.png" type="Texture" id=93]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0007.png" type="Texture" id=94]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0014.png" type="Texture" id=95]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0022.png" type="Texture" id=96]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0015.png" type="Texture" id=97]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0010.png" type="Texture" id=98]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0016.png" type="Texture" id=99]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0012.png" type="Texture" id=100]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0021.png" type="Texture" id=101]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0023.png" type="Texture" id=102]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0013.png" type="Texture" id=103]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0011.png" type="Texture" id=104]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0024.png" type="Texture" id=105]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0017.png" type="Texture" id=106]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0008.png" type="Texture" id=107]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0009.png" type="Texture" id=108]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0019.png" type="Texture" id=109]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0018.png" type="Texture" id=110]
+[ext_resource path="res://Assets/Sprite/Player/Sombra/0020.png" type="Texture" id=111]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 61.7259
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 92 ), ExtResource( 93 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 94 ), ExtResource( 107 ), ExtResource( 108 ), ExtResource( 98 ), ExtResource( 104 ), ExtResource( 100 ), ExtResource( 103 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 99 ), ExtResource( 106 ), ExtResource( 110 ), ExtResource( 109 ), ExtResource( 111 ), ExtResource( 101 ), ExtResource( 96 ), ExtResource( 102 ), ExtResource( 105 ) ],
+"loop": true,
+"name": "Rotation",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=15]
+resource_name = "fly"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Helicopter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.659 ),
+"update": 0,
+"values": [ Vector2( -73.335, 460 ), Vector2( -73.3347, -26.5799 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Helice:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.659 ),
+"update": 0,
+"values": [ Vector2( 0, 486.56 ), Vector2( 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hook:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 0.659 ),
+"update": 0,
+"values": [ Vector2( -2.749, 503 ), Vector2( -2.749, 69.593 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "hook_down"
@@ -175,6 +246,48 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=14]
+resource_name = "landing"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Helicopter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.659, 1 ),
+"update": 0,
+"values": [ Vector2( -73.3347, -26.5799 ), Vector2( -73.335, 460 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Helice:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.659, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 486.56 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hook:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.659, 1 ),
+"update": 0,
+"values": [ Vector2( -2.749, 69.593 ), Vector2( -2.749, 503 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "fly"
+
 [sub_resource type="AnimationNodeAnimation" id=5]
 animation = "hook_down"
 
@@ -183,6 +296,9 @@ animation = "hook_idle"
 
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "hook_up"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "landing"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
@@ -194,18 +310,35 @@ switch_mode = 2
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=11]
+states/fly/node = SubResource( 16 )
+states/fly/position = Vector2( -27, 125 )
 states/hook_down/node = SubResource( 5 )
 states/hook_down/position = Vector2( 547, 77 )
 states/hook_idle/node = SubResource( 6 )
 states/hook_idle/position = Vector2( 275, 77 )
 states/hook_up/node = SubResource( 7 )
 states/hook_up/position = Vector2( 403, 213 )
-transitions = [ "hook_idle", "hook_down", SubResource( 8 ), "hook_down", "hook_up", SubResource( 9 ), "hook_up", "hook_idle", SubResource( 10 ) ]
+states/landing/node = SubResource( 17 )
+states/landing/position = Vector2( 119, 213 )
+transitions = [ "hook_idle", "hook_down", SubResource( 8 ), "hook_down", "hook_up", SubResource( 9 ), "hook_up", "hook_idle", SubResource( 10 ), "hook_idle", "landing", SubResource( 18 ), "landing", "fly", SubResource( 19 ), "fly", "hook_idle", SubResource( 20 ) ]
 start_node = "hook_idle"
-graph_offset = Vector2( -114, -59 )
+graph_offset = Vector2( -203, 56 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 42.804
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 4
@@ -233,6 +366,15 @@ position = Vector2( -76.0858, 299.004 )
 shape = SubResource( 1 )
 disabled = true
 
+[node name="Shadow" type="AnimatedSprite" parent="."]
+position = Vector2( -73.335, -26.58 )
+frames = SubResource( 13 )
+animation = "Rotation"
+frame = 9
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Helicopter" type="AnimatedSprite" parent="."]
 position = Vector2( -73.3347, -26.5799 )
 frames = ExtResource( 3 )
@@ -245,16 +387,18 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
-frame = 2
+frame = 3
 playing = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fly = SubResource( 15 )
 anims/hook_down = SubResource( 2 )
 anims/hook_idle = SubResource( 3 )
 anims/hook_up = SubResource( 4 )
+anims/landing = SubResource( 14 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 11 )
@@ -301,8 +445,8 @@ margin_left = 11.8
 margin_top = 8.8
 margin_right = 128.8
 margin_bottom = 29.8
-custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 custom_fonts/font = ExtResource( 81 )
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 text = "SPEED 0"
 script = ExtResource( 75 )
 __meta__ = {
@@ -314,8 +458,8 @@ margin_left = 351.8
 margin_top = -73.3
 margin_right = 582.8
 margin_bottom = -37.3
-custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 custom_fonts/font = ExtResource( 82 )
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 text = "TIME 0:00"
 align = 1
 script = ExtResource( 76 )
@@ -328,8 +472,8 @@ margin_left = 62.0
 margin_top = 382.0
 margin_right = 179.0
 margin_bottom = 403.0
-custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 custom_fonts/font = ExtResource( 84 )
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 text = "POSX 0"
 script = ExtResource( 79 )
 __meta__ = {
@@ -341,8 +485,8 @@ margin_left = 62.0
 margin_top = 408.0
 margin_right = 179.0
 margin_bottom = 429.0
-custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 custom_fonts/font = ExtResource( 84 )
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 text = "POSY 0"
 script = ExtResource( 78 )
 __meta__ = {
@@ -355,8 +499,8 @@ margin_left = 582.0
 margin_top = 440.0
 margin_right = 699.0
 margin_bottom = 467.0
-custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 custom_fonts/font = ExtResource( 83 )
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
 text = "ON"
 script = ExtResource( 77 )
 __meta__ = {
@@ -373,11 +517,19 @@ texture_progress = ExtResource( 85 )
 fill_mode = 3
 script = ExtResource( 87 )
 
-[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
+[node name="LandingPoint" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingPoint"]
+position = Vector2( -49.9467, 328.221 )
+shape = SubResource( 21 )
+
 [connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
+[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
 [connection signal="onChangeTime" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Time" method="_on_Player_onChangeTime"]
 [connection signal="onCheckHookState" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Hook" method="_on_Player_onCheckHookState"]
 [connection signal="onCheckSpeed" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Speed" method="_on_Player_onCheckSpeed"]
 [connection signal="onPrintFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_onPrintFuel"]
 [connection signal="setMaxFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_setMaxFuel"]
 [connection signal="body_entered" from="Hook/Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="LandingPoint" to="." method="_on_landing_point_enter"]

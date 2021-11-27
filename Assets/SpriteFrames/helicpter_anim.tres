@@ -1,13 +1,5 @@
-[gd_resource type="SpriteFrames" load_steps=33 format=2]
+[gd_resource type="SpriteFrames" load_steps=25 format=2]
 
-[ext_resource path="res://Assets/Sprite/Player/Left/0001.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprite/Player/Right/0001.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprite/Player/Front-Right/0001.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprite/Player/Back/0001.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprite/Player/Back-Right/0001.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprite/Player/Back-Left/0001.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprite/Player/Front/0001.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprite/Player/Front-Left/0001.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprite/Player/Helicoptero/0002.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprite/Player/Helicoptero/0001.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprite/Player/Helicoptero/0017.png" type="Texture" id=11]
@@ -35,47 +27,7 @@
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "Front",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Left",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 1 ) ],
-"loop": true,
-"name": "Right",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "Back",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "Back_left",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Front_left",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "Back_right",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "Front_right",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 26 ), ExtResource( 12 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 22 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 11 ), ExtResource( 27 ), ExtResource( 18 ), ExtResource( 30 ), ExtResource( 23 ), ExtResource( 28 ), ExtResource( 19 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 15 ), ExtResource( 26 ), ExtResource( 12 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 32 ), ExtResource( 24 ), ExtResource( 14 ), ExtResource( 25 ), ExtResource( 22 ), ExtResource( 31 ), ExtResource( 29 ), ExtResource( 11 ), ExtResource( 27 ), ExtResource( 18 ), ExtResource( 30 ), ExtResource( 23 ), ExtResource( 28 ), ExtResource( 19 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Rotation",
 "speed": 5.0

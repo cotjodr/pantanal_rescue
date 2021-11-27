@@ -9,9 +9,10 @@ signal setMaxFuel(_MaxFuel);
 
 export var turn_speed = 400;
 export var MaxTime = 300;
-export var MaxFuel = 700;
+export var MaxFuel = 7000;
 
 onready var Helicopter = $Helicopter
+onready var Shadow = $Shadow
 onready var animationTree = get_node("AnimationTree")
 onready var stateMachine = animationTree.get("parameters/playback")
 onready var fuel_system = get_node("/root/FuelSystem");
@@ -21,8 +22,13 @@ var motion = Vector2();
 var angle = 0.0;
 var direction = 0;
 var numberOfCapivaras = 0;
-var AtualFuel = 0;
+var current_fuel = 0;
 
+
+func _ready():
+	current_fuel = MaxFuel
+	emit_signal("setMaxFuel", MaxFuel);
+	._ready()
 
 func update_angle(value):
 	angle += value
@@ -38,18 +44,22 @@ func _physics_process(delta):
 	var horizontal = get_horizontal_input_info()
 	var vertical = get_vertical_input_info()
 	
-	update_angle(horizontal * turn_speed * delta)
+	if stateMachine.get_current_node() != "landing":
+		update_angle(horizontal * turn_speed * delta)
 	
-	if Input.is_action_just_pressed("ui_select"): 
-		stateMachine.travel("hook_down")
-	elif Input.is_action_just_released("ui_select"):
-		stateMachine.travel("hook_up")
-		
-	if vertical == 0:
-		apply_friction(acceleration * delta)
+		if Input.is_action_just_pressed("ui_select"): 
+			stateMachine.travel("hook_down")
+		elif Input.is_action_just_released("ui_select"):
+			stateMachine.travel("hook_up")
+			
+		if vertical == 0:
+			apply_friction(acceleration * delta)
+		else:
+			apply_movement(acceleration * delta * vertical)
 	else:
-		apply_movement(acceleration * delta * vertical)
-	
+		motion = Vector2.ZERO
+		if Input.is_action_just_pressed("fly"): 
+			stateMachine.travel("fly")
 	### HUD Functions ###
 	TimeCount(delta);
 	FuelCount(delta);
@@ -62,13 +72,13 @@ func _physics_process(delta):
 
 func _process(_delta):
 	animation_set()
-	emit_signal("setMaxFuel", MaxFuel);
-	AtualFuel = MaxFuel;
+	
 	pass
 
 
 func animation_set():
 	Helicopter.set_frame(direction)
+	Shadow.set_frame(direction)
 	
 	
 func get_horizontal_input_info():
@@ -108,11 +118,10 @@ func TimeCount(delta):
 
 func FuelCount(delta):
 	var consumo = fuel_system.get_instant_consumption(motion.length(), maxSpeed) * delta;
-	print(consumo);
-	AtualFuel -= consumo;
+	current_fuel -= consumo;
 	
-	if AtualFuel >= 0:
-		emit_signal("onPrintFuel", AtualFuel);
+	if current_fuel >= 0:
+		emit_signal("onPrintFuel", current_fuel);
 	else:
 		#### GAME OVER CONDITION ####
 		pass;
@@ -132,3 +141,8 @@ func HookCheck():
 		emit_signal("onCheckHookState", true);
 	else:
 		emit_signal("onCheckHookState", false);
+
+func _on_landing_point_enter(body):
+	if body.name == "Base":
+		stateMachine.travel("landing")
+	pass

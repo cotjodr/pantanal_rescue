@@ -21,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	pass;
 
-func Damage() -> void:
+func Damage(damage) -> void:
 	pass;
 
 func StatusChecker() -> bool:
