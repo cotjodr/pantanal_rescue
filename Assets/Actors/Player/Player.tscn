@@ -115,7 +115,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 61.7259
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 92 ), ExtResource( 93 ), ExtResource( 88 ), ExtResource( 89 ), ExtResource( 90 ), ExtResource( 91 ), ExtResource( 94 ), ExtResource( 107 ), ExtResource( 108 ), ExtResource( 98 ), ExtResource( 104 ), ExtResource( 100 ), ExtResource( 103 ), ExtResource( 95 ), ExtResource( 97 ), ExtResource( 99 ), ExtResource( 106 ), ExtResource( 110 ), ExtResource( 109 ), ExtResource( 111 ), ExtResource( 101 ), ExtResource( 96 ), ExtResource( 102 ), ExtResource( 105 ) ],
 "loop": true,
@@ -123,7 +123,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=3]
 resource_name = "fly"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Helicopter:position")
@@ -162,8 +162,7 @@ tracks/2/keys = {
 "values": [ Vector2( -2.749, 503 ), Vector2( -2.749, 69.593 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "hook_down"
+[sub_resource type="Animation" id=4]
 length = 3.46154
 step = 0.0769231
 tracks/0/type = "value"
@@ -191,7 +190,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 step = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Hook:texture")
@@ -218,7 +217,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 length = 1.92308
 step = 0.0769231
 tracks/0/type = "value"
@@ -246,7 +245,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=7]
 resource_name = "landing"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Helicopter:position")
@@ -285,57 +284,57 @@ tracks/2/keys = {
 "values": [ Vector2( -2.749, 69.593 ), Vector2( -2.749, 503 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "fly"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "hook_down"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "hook_idle"
 
-[sub_resource type="AnimationNodeAnimation" id=7]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "hook_up"
 
-[sub_resource type="AnimationNodeAnimation" id=17]
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "landing"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/fly/node = SubResource( 16 )
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/fly/node = SubResource( 8 )
 states/fly/position = Vector2( -27, 125 )
-states/hook_down/node = SubResource( 5 )
+states/hook_down/node = SubResource( 9 )
 states/hook_down/position = Vector2( 547, 77 )
-states/hook_idle/node = SubResource( 6 )
+states/hook_idle/node = SubResource( 10 )
 states/hook_idle/position = Vector2( 275, 77 )
-states/hook_up/node = SubResource( 7 )
+states/hook_up/node = SubResource( 11 )
 states/hook_up/position = Vector2( 403, 213 )
-states/landing/node = SubResource( 17 )
+states/landing/node = SubResource( 12 )
 states/landing/position = Vector2( 119, 213 )
-transitions = [ "hook_idle", "hook_down", SubResource( 8 ), "hook_down", "hook_up", SubResource( 9 ), "hook_up", "hook_idle", SubResource( 10 ), "hook_idle", "landing", SubResource( 18 ), "landing", "fly", SubResource( 19 ), "fly", "hook_idle", SubResource( 20 ) ]
+transitions = [ "hook_idle", "hook_down", SubResource( 13 ), "hook_down", "hook_up", SubResource( 14 ), "hook_up", "hook_idle", SubResource( 15 ), "hook_idle", "landing", SubResource( 16 ), "landing", "fly", SubResource( 17 ), "fly", "hook_idle", SubResource( 18 ) ]
 start_node = "hook_idle"
 graph_offset = Vector2( -203, 56 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
 [sub_resource type="CircleShape2D" id=21]
 radius = 42.804
@@ -368,7 +367,7 @@ disabled = true
 
 [node name="Shadow" type="AnimatedSprite" parent="."]
 position = Vector2( -73.335, -26.58 )
-frames = SubResource( 13 )
+frames = SubResource( 2 )
 animation = "Rotation"
 frame = 9
 __meta__ = {
@@ -387,24 +386,23 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
-frame = 3
 playing = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fly = SubResource( 15 )
-anims/hook_down = SubResource( 2 )
-anims/hook_idle = SubResource( 3 )
-anims/hook_up = SubResource( 4 )
-anims/landing = SubResource( 14 )
+anims/fly = SubResource( 3 )
+anims/hook_down = SubResource( 4 )
+anims/hook_idle = SubResource( 5 )
+anims/hook_up = SubResource( 6 )
+anims/landing = SubResource( 7 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 11 )
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 12 )
+parameters/playback = SubResource( 20 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -16.3601, -8.39493 )
@@ -524,8 +522,8 @@ collision_mask = 8
 position = Vector2( -49.9467, 328.221 )
 shape = SubResource( 21 )
 
-[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
 [connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
+[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
 [connection signal="onChangeTime" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Time" method="_on_Player_onChangeTime"]
 [connection signal="onCheckHookState" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Hook" method="_on_Player_onCheckHookState"]
 [connection signal="onCheckSpeed" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Speed" method="_on_Player_onCheckSpeed"]

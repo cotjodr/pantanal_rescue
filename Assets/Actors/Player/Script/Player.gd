@@ -13,6 +13,7 @@ export var MaxFuel = 7000;
 
 onready var Helicopter = $Helicopter
 onready var Shadow = $Shadow
+onready var HeliceSound = $HeliceSound
 onready var animationTree = get_node("AnimationTree")
 onready var stateMachine = animationTree.get("parameters/playback")
 onready var fuel_system = get_node("/root/FuelSystem");

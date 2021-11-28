@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/helicoptero-corda-descendo.mp3-f5d5944f9a86bea2fa3054b281b4c340.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/helicoptero-corda-descendo.mp3"
+dest_files=[ "res://.import/helicoptero-corda-descendo.mp3-f5d5944f9a86bea2fa3054b281b4c340.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
