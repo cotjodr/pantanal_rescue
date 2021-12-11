@@ -7,6 +7,9 @@ onready var trees = $Trees
 onready var fire_system = get_node("/root/FireSystem");
 export var inSeed = ''
 export var maxNumberOfCapivaras = 20
+# se esta pegando fogo ou não
+# distancia da base
+# tempo restante
 
 var Capivara = load("res://Assets/Actors/Capivara/Capivara.tscn")
 var Leaves = load("res://Assets/Particles/Leaves.tscn")

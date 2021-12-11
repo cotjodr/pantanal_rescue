@@ -386,6 +386,7 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
+frame = 1
 playing = true
 __meta__ = {
 "_edit_lock_": true
@@ -522,8 +523,8 @@ collision_mask = 8
 position = Vector2( -49.9467, 328.221 )
 shape = SubResource( 21 )
 
-[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
 [connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
+[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
 [connection signal="onChangeTime" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Time" method="_on_Player_onChangeTime"]
 [connection signal="onCheckHookState" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Hook" method="_on_Player_onCheckHookState"]
 [connection signal="onCheckSpeed" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Speed" method="_on_Player_onCheckSpeed"]

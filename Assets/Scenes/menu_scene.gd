@@ -25,9 +25,9 @@ func _ready():
 	osn.lacunarity = 2
 	osn.period = 20
 	osn.persistence = 72.5
-	initialize_map_of_capivara()
+	#initialize_map_of_capivara()
 	generate_map()
-	generate_capivaras()
+	#generate_capivaras()
 	pass # Replace with function body.
 
 func generate_map():
@@ -38,7 +38,7 @@ func generate_map():
 			tilemap.set_cell(x,y,rand)
 			if tilemap.get_cell(x, y) == 0:
 				trees.set_cell(x,y, 6)
-				disable_possible_pos(x,y)
+				#disable_possible_pos(x,y)
 			else:
 				trees.set_cell(x, y, -1)
 	for x in range(-width, width):
