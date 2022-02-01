@@ -1,6 +1,6 @@
-[gd_scene load_steps=133 format=2]
+[gd_scene load_steps=137 format=2]
 
-[ext_resource path="res://Assets/Actors/Player/Script/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Actors/Player/Script/player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/SpriteFrames/gancho_anim.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://Assets/SpriteFrames/helicpter_anim.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://Assets/SpriteFrames/helicie_anim.tres" type="SpriteFrames" id=4]
@@ -74,19 +74,19 @@
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0069.png" type="Texture" id=72]
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0070.png" type="Texture" id=73]
 [ext_resource path="res://Assets/Sprite/Player/Gancho/0068.png" type="Texture" id=74]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Speed.gd" type="Script" id=75]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Time.gd" type="Script" id=76]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_Hook.gd" type="Script" id=77]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_PosY.gd" type="Script" id=78]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Label_PosX.gd" type="Script" id=79]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_speed.gd" type="Script" id=75]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_time.gd" type="Script" id=76]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_hook.gd" type="Script" id=77]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_posy.gd" type="Script" id=78]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_posx.gd" type="Script" id=79]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Grid_Information.png" type="Texture" id=80]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-23.tres" type="DynamicFont" id=81]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-40.tres" type="DynamicFont" id=82]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-30.tres" type="DynamicFont" id=83]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Tipografia/HUD_DynamicFont_s-23-B.tres" type="DynamicFont" id=84]
-[ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Front_Bar.png" type="Texture" id=85]
+[ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/fuel_bar_white.png" type="Texture" id=85]
 [ext_resource path="res://Assets/Actors/Player/HUD Components/Sprites/HUD Fuel-Back_Bar.png" type="Texture" id=86]
-[ext_resource path="res://Assets/Actors/Player/Script/HUD_Fueal_Bar.gd" type="Script" id=87]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_fuel_bar.gd" type="Script" id=87]
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0003.png" type="Texture" id=88]
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0004.png" type="Texture" id=89]
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0005.png" type="Texture" id=90]
@@ -111,6 +111,10 @@
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0019.png" type="Texture" id=109]
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0018.png" type="Texture" id=110]
 [ext_resource path="res://Assets/Sprite/Player/Sombra/0020.png" type="Texture" id=111]
+[ext_resource path="res://Assets/SFX/helicopter_h_engine_loop_2x.mp3" type="AudioStream" id=112]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_match_score.gd" type="Script" id=113]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_round_score.gd.gd" type="Script" id=114]
+[ext_resource path="res://Assets/Actors/Player/Script/hud_label_inventory.gd" type="Script" id=115]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 61.7259
@@ -332,7 +336,7 @@ states/landing/node = SubResource( 12 )
 states/landing/position = Vector2( 119, 213 )
 transitions = [ "hook_idle", "hook_down", SubResource( 13 ), "hook_down", "hook_up", SubResource( 14 ), "hook_up", "hook_idle", SubResource( 15 ), "hook_idle", "landing", SubResource( 16 ), "landing", "fly", SubResource( 17 ), "fly", "hook_idle", SubResource( 18 ) ]
 start_node = "hook_idle"
-graph_offset = Vector2( -203, 56 )
+graph_offset = Vector2( -136, -26 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
@@ -392,6 +396,12 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="HeliceSound" type="AudioStreamPlayer" parent="Helice"]
+stream = ExtResource( 112 )
+volume_db = -5.0
+autoplay = true
+bus = "Effects"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fly = SubResource( 3 )
 anims/hook_down = SubResource( 4 )
@@ -444,10 +454,24 @@ margin_left = 11.8
 margin_top = 8.8
 margin_right = 128.8
 margin_bottom = 29.8
-custom_fonts/font = ExtResource( 81 )
 custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 81 )
 text = "SPEED 0"
 script = ExtResource( 75 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Inventory" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 351.0
+margin_top = 8.8
+margin_right = 582.0
+margin_bottom = 29.8
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
+text = "CAPIVARAS 0/5"
+align = 1
+script = ExtResource( 115 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -457,8 +481,8 @@ margin_left = 351.8
 margin_top = -73.3
 margin_right = 582.8
 margin_bottom = -37.3
-custom_fonts/font = ExtResource( 82 )
 custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 82 )
 text = "TIME 0:00"
 align = 1
 script = ExtResource( 76 )
@@ -471,10 +495,24 @@ margin_left = 62.0
 margin_top = 382.0
 margin_right = 179.0
 margin_bottom = 403.0
-custom_fonts/font = ExtResource( 84 )
 custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
 text = "POSX 0"
 script = ExtResource( 79 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Match_Score" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 548.0
+margin_top = 382.0
+margin_right = 898.0
+margin_bottom = 403.0
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
+text = "RUN SCORE 0"
+align = 2
+script = ExtResource( 113 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -484,10 +522,24 @@ margin_left = 62.0
 margin_top = 408.0
 margin_right = 179.0
 margin_bottom = 429.0
-custom_fonts/font = ExtResource( 84 )
 custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
 text = "POSY 0"
 script = ExtResource( 78 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label_Round_Score" type="Label" parent="HUD/MarginContainer/HBoxContainer/TextureRect"]
+margin_left = 548.0
+margin_top = 408.0
+margin_right = 898.0
+margin_bottom = 435.0
+custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 84 )
+text = "ROUND SCORE 0"
+align = 2
+script = ExtResource( 114 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -498,8 +550,8 @@ margin_left = 582.0
 margin_top = 440.0
 margin_right = 699.0
 margin_bottom = 467.0
-custom_fonts/font = ExtResource( 83 )
 custom_colors/font_color = Color( 0.407843, 0.992157, 0.298039, 1 )
+custom_fonts/font = ExtResource( 83 )
 text = "ON"
 script = ExtResource( 77 )
 __meta__ = {
@@ -514,6 +566,7 @@ value = 70.0
 texture_under = ExtResource( 86 )
 texture_progress = ExtResource( 85 )
 fill_mode = 3
+tint_progress = Color( 0.407843, 0.992157, 0.298039, 1 )
 script = ExtResource( 87 )
 
 [node name="LandingPoint" type="Area2D" parent="."]
@@ -523,12 +576,17 @@ collision_mask = 8
 position = Vector2( -49.9467, 328.221 )
 shape = SubResource( 21 )
 
-[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onChackPos"]
-[connection signal="onChackPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onChackPos"]
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="onChangeTime" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Time" method="_on_Player_onChangeTime"]
 [connection signal="onCheckHookState" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Hook" method="_on_Player_onCheckHookState"]
+[connection signal="onCheckPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosX" method="_on_Player_onCheckPos"]
+[connection signal="onCheckPos" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_PosY" method="_on_Player_onCheckPos"]
 [connection signal="onCheckSpeed" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Speed" method="_on_Player_onCheckSpeed"]
+[connection signal="onInventoryChange" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Inventory" method="_on_Player_onInventoryChange"]
 [connection signal="onPrintFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_onPrintFuel"]
+[connection signal="onRoundScoreChange" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Match_Score" method="_on_Player_onRoundScoreChange"]
+[connection signal="onRoundScoreChange" from="." to="HUD/MarginContainer/HBoxContainer/TextureRect/Label_Round_Score" method="_on_Player_onRoundScoreChange"]
 [connection signal="setMaxFuel" from="." to="HUD/MarginContainer/HBoxContainer/Fuel_Bar" method="_on_Player_setMaxFuel"]
 [connection signal="body_entered" from="Hook/Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="LandingPoint" to="." method="_on_landing_point_enter"]

@@ -1,4 +1,4 @@
 extends Label
 
-func _on_Player_onChackPos(_PosHoriz, _PosVerti):
-	text = "POSY " + String(int(_PosVerti));
+func _on_Player_onCheckPos(pos_horiz, pos_verti):
+	text = "POSY " + String(int(pos_verti));

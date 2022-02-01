@@ -1,7 +1,9 @@
 extends Node
 
 var real_max_speed = 261.0
-enum MODEL_WEIGHT {LITE, LITE2, MEDIUM, HEAVY, HEAVY2}
+const MODEL_WEIGHT = Utils.MODEL_WEIGHT
+
+onready var match_data = get_node("/root/MatchData");
 
 const equation_terms = [
 	[0.00134731, 0.167447],
@@ -11,10 +13,11 @@ const equation_terms = [
 	[0.000550604, 0.137872],
 ]
 
-export var model_weight = MODEL_WEIGHT.LITE;
+export var model_weight = MODEL_WEIGHT.LITE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	model_weight = match_data.model_weight
 	pass # Replace with function body.
 
 func convert_pxs_ms(max_speed, current_speed):

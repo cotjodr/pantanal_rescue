@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Label
 
 
 # Declare member variables here. Examples:
@@ -8,10 +8,14 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ColorRect/MarginContainer/HBoxContainer/VBoxContainer/menu_opcoes/novo_jogo.grab_focus()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Player_onRoundScoreChange(score, run_score):
+	text = "RUN SCORE " + String(int(run_score))
+	pass # Replace with function body.

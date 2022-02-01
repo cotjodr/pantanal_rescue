@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/helicopter_h_engine_loop_2x.mp3-3b92eec6cc53d1e776223d6724987731.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/helicopter_h_engine_loop_2x.mp3"
+dest_files=[ "res://.import/helicopter_h_engine_loop_2x.mp3-3b92eec6cc53d1e776223d6724987731.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

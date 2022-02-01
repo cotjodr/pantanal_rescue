@@ -1,5 +1,6 @@
 extends MarginContainer
-
+onready var match_data = get_node("/root/MatchData");
+onready var scene_manager = get_node("/root/SceneChanger");
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,7 +9,8 @@ extends MarginContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ColorRect/MarginContainer/HBoxContainer/VBoxContainer/menu_opcoes/novo_jogo.grab_focus()
+	match_data._init_round()
+	scene_manager.change_scene("res://Assets/Scenes/main.tscn", 5.0)
 	pass # Replace with function body.
 
 

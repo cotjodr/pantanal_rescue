@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/helicoptero-loop-cortado.mp3-3778e65ca1aab720b9f38a21c862264e.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/helicoptero-loop-cortado.mp3"
+dest_files=[ "res://.import/helicoptero-loop-cortado.mp3-3778e65ca1aab720b9f38a21c862264e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

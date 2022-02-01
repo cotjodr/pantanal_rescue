@@ -5,9 +5,9 @@ class_name Actor
 
 # Atributos da classe
 export var health = 100;
-export var bLifeStats = true;
-export var moveDir = Vector2.ZERO;
-export var maxSpeed = 500
+export var b_life_stats = true;
+export var move_dir = Vector2.ZERO;
+export var max_speed = 500
 export var acceleration = 2000
 
 
@@ -21,8 +21,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	pass;
 
-func Damage(damage) -> void:
+func damage(damage) -> void:
 	pass;
 
-func StatusChecker() -> bool:
-	return bLifeStats;
+func status_checker() -> bool:
+	return b_life_stats;

@@ -1,0 +1,17 @@
+class_name Utils
+
+enum TILES {
+	WATER = 2,
+	GRASS = 3,
+	FOREST = 0,
+	COLIDER = 7,
+	TREE = 6,
+	BURN_TREE = 8,
+	BURN_GRASS = 9
+}
+
+enum MODEL_WEIGHT {LITE, LITE2, MEDIUM, HEAVY, HEAVY2}
+
+enum OBJECTS {WATER, CAPIVARA}
+
+enum OBJECTS_WEIGHT {WATER = 2, CAPIVARA = 1}

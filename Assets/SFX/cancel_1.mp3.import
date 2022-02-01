@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/cancel_1.mp3-415ee011a8235c80203403cac1c56743.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/cancel_1.mp3"
+dest_files=[ "res://.import/cancel_1.mp3-415ee011a8235c80203403cac1c56743.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
