@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Tileset/tileset_terreno.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Scenes/menu_scene.gd" type="Script" id=2]
@@ -7,9 +7,32 @@
 [ext_resource path="res://Assets/SpriteFrames/helicpter_anim.tres" type="SpriteFrames" id=5]
 [ext_resource path="res://Assets/SFX/helicopter_h_engine_loop_2x.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Assets/SFX/06_fire_circuit.mp3" type="AudioStream" id=7]
+[ext_resource path="res://Assets/PostProcess/env_process.tres" type="Environment" id=8]
+[ext_resource path="res://Assets/Sprite/Tileset/leaf_particle.png" type="Texture" id=9]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 540, 1 )
+flag_align_y = true
+flag_disable_z = true
+gravity = Vector3( 98, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_random = 1.0
 
 [node name="MenuScreen" type="Node2D"]
 script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 961, 534 )
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 8 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.976471, 0.584314, 0.298039, 1 )
 
 [node name="Ground" type="TileMap" parent="."]
 mode = 1
@@ -28,17 +51,20 @@ centered_textures = true
 format = 1
 
 [node name="Helicopter" type="AnimatedSprite" parent="."]
+visible = false
 position = Vector2( 1398, 688.6 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.44, 0.44 )
 frames = ExtResource( 5 )
 animation = "Rotation"
 frame = 8
 
 [node name="Helice" type="AnimatedSprite" parent="."]
-position = Vector2( 1458, 704.6 )
-scale = Vector2( 0.8, 0.8 )
+visible = false
+position = Vector2( 1430, 697 )
+scale = Vector2( 0.44, 0.44 )
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
+frame = 3
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Helice"]
@@ -49,6 +75,16 @@ bus = "Effects"
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" parent="CanvasLayer" instance=ExtResource( 3 )]
+
+[node name="Particles2D" type="Particles2D" parent="CanvasLayer"]
+position = Vector2( 903.993, 433.629 )
+z_index = -1
+amount = 200
+lifetime = 10.0
+speed_scale = 1.2
+randomness = 1.0
+process_material = SubResource( 1 )
+texture = ExtResource( 9 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )

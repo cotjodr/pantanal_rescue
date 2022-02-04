@@ -390,7 +390,7 @@ __meta__ = {
 [node name="Helice" type="AnimatedSprite" parent="."]
 frames = ExtResource( 4 )
 animation = "Helicie_Loop"
-frame = 1
+frame = 2
 playing = true
 __meta__ = {
 "_edit_lock_": true
